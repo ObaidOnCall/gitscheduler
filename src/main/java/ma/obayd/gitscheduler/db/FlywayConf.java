@@ -16,7 +16,7 @@ public class FlywayConf {
      * @return
      */
     @Bean
-    public Flyway flyway() {
+    public static Flyway flyway() {
         DataSource dataSource = DataSourceBuilder.create()
                                 .url("jdbc:mysql://localhost:3306/gitschedulerDB")
                                 .username("root")
