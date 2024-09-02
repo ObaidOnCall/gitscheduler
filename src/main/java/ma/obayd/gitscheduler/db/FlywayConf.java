@@ -15,7 +15,10 @@ import javax.sql.DataSource;
 
 @Configuration
 public class FlywayConf {
-
+    
+    private FlywayConf() {
+        throw new IllegalStateException("Utility class");
+      }
     private static Properties loadProperties() throws Exception {
         String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
         String appConfigPath = "src/main/resources/application.properties";
@@ -45,7 +48,6 @@ public class FlywayConf {
                                 .driverClassName(properties.getProperty("spring.datasource.driver-class-name"))
                                 .type(org.apache.tomcat.jdbc.pool.DataSource.class)
                                 .build();
-        Flyway flyway = new Flyway(Flyway.configure().dataSource(dataSource).locations("classpath:db/migrations").baselineOnMigrate(true)) ;
-        return flyway;
+        return new Flyway(Flyway.configure().dataSource(dataSource).locations("classpath:db/migrations").baselineOnMigrate(true)) ;
     }
 }
