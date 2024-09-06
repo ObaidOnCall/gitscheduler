@@ -13,12 +13,11 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 
-@Configuration
 public class FlywayConf {
     
     private FlywayConf() {
         throw new IllegalStateException("Utility class");
-      }
+    }
     private static Properties loadProperties() throws Exception {
         String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
         String appConfigPath = "src/main/resources/application.properties";
@@ -38,7 +37,6 @@ public class FlywayConf {
      * @return
      * @throws Exception 
      */
-    @Bean
     public static Flyway flyway() throws Exception {
         Properties properties = loadProperties();
         DataSource dataSource = DataSourceBuilder.create()
