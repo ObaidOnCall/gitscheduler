@@ -1,32 +1,59 @@
 package ma.obayd.gitscheduler.utils;
 
-import org.springframework.context.SmartLifecycle;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 
 import java.util.logging.Logger;
 
 
 @Component
-public class MyServiceLifecycle implements SmartLifecycle{
+public class MyServiceLifecycle{
 
     Logger logger = Logger.getLogger(getClass().getName());
     private boolean isRunning = false;
 
-    @Override
+    private final Scheduler scheduler ;
+
+    @Autowired
+    public MyServiceLifecycle(Scheduler scheduler) {
+        this.scheduler = scheduler ;
+    }
+
+    @PostConstruct
     public void start() {
+        try {
+            scheduler.start();
+            logger.info("starts Quartz✅");
 
-        logger.info("Application starts ✅");
-        isRunning = true ;
+            isRunning = true ;
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+            logger.info("Quartz faild to starts with mesage :" + e.getMessage());
+
+            isRunning = false ;
+
+        }
     }
 
-    @Override
+    @PreDestroy
     public void stop() {
+        try {
+            scheduler.shutdown();
+            logger.warning("Quartz is going to shutdown ✅");
+            isRunning = false ;
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+            logger.warning("Quartz faild to shutdown ❎ message"+e.getMessage());
+            isRunning = true ;
 
-        logger.warning("Application shutdown ❎");
-        isRunning = false ;
+        }
     }
 
-    @Override
     public boolean isRunning() {
         return isRunning ;
     }

@@ -10,13 +10,18 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data @Setter @Getter
-public class EmailRequest implements Request , Serializable{
+public class EmailRequest implements Request {
 
     private String message ;
-    // private Timestamp sendDate ;
+    private CronTriggerRequest cron ;
+
+    @Deprecated
     private int dayOfMonth ;
+    @Deprecated
     private int dayOfWeek ;
+    @Deprecated
     private int hour ;
+    @Deprecated
     private int minute ;
 
 }

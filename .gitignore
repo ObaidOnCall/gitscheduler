@@ -32,10 +32,5 @@ build/
 ### VS Code ###
 .vscode/
 
-<<<<<<< HEAD
 # @ config files
 src/main/resources/application.properties
-=======
-
-quartz.properties
->>>>>>> 65cedbd5947857e2752529d96512eb803f26517a
