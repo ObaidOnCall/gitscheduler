@@ -20,8 +20,4 @@ public class PropertiesLoader {
         }
         return properties;
     }
-
-    public Properties loadProperties() {
-        return new Properties();
-    }
 }

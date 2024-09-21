@@ -1,4 +1,4 @@
-package ma.obayd.gitscheduler.utils;
+package ma.obayd.gitscheduler.lifecycle;
 
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;

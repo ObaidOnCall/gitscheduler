@@ -1,4 +1,4 @@
-package ma.obayd.gitscheduler.db;
+package ma.obayd.gitscheduler.conf;
 
 import java.lang.reflect.Method;
 

@@ -1,3 +1,4 @@
+package ma.obayd.gitscheduler.conf;
 // package ma.obayd.gitscheduler.db;
 
 // import org.springframework.context.annotation.Bean;

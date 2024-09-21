@@ -34,3 +34,4 @@ build/
 
 # @ config files
 src/main/resources/application.properties
+application.log
